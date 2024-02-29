@@ -14,7 +14,7 @@ class ListExercise:
             return []
 
         max_value = input_list[0]
-        for el in input_list:
+        for el in input_list[1:]:
             if el > max_value:
                 max_value = el
 
