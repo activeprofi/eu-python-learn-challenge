@@ -17,6 +17,6 @@ class FilterMapExercise:
         """
 
         map_result = [func(val) for val in input_array]
-        filter_result = [v for b, v in map_result if b is True]
+        filter_result = [func_res for boolean, func_res in map_result if boolean]
 
         return list(filter_result)
