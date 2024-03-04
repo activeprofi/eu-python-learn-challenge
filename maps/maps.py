@@ -14,7 +14,7 @@ class MapExercise:
         :return: Средний рейтинг фильмов у которых две или больше стран
         """
 
-        filtered_movies = filter(lambda m: len(m["country"].split(",")) >= 2, list_of_movies)
+        filtered_movies = filter(lambda m: m["country"].count(",") + 1 >= 2, list_of_movies)
 
         def map_func(m: dict) -> Union[float, None]:
             rat = float(m["rating_kinopoisk"]) if m["rating_kinopoisk"] else None
