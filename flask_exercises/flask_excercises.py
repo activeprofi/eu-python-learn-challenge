@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response
+from flask import Flask, request
 
 
 class FlaskExercise:
