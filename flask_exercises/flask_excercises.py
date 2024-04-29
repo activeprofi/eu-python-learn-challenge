@@ -32,12 +32,13 @@ class FlaskExercise:
 
         @app.post("/user")
         def create_user():
+            key = "name"
             data = request.get_json()
 
-            if "name" not in data:
-                return {"errors": {"name": "This field is required"}}, 422
+            if key not in data:
+                return {"errors": {f"{key}": "This field is required"}}, 422
 
-            username = data["name"]
+            username = data[key]
             users[username] = {}
             return {"data": f"User {username} is created!"}, 201
 
@@ -50,6 +51,9 @@ class FlaskExercise:
 
         @app.patch("/user/<name>")
         def update_user(name):
+            if name not in users:
+                return "errors", 404
+
             temp_user = users[name]
             data = request.get_json()
             new_user_name = data["name"]
@@ -61,5 +65,8 @@ class FlaskExercise:
 
         @app.delete("/user/<name>")
         def delete_user(name):
+            if name not in users:
+                return "errors", 404
+
             del users[name]
             return "success", 204
